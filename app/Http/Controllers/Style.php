@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Styles;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
@@ -28,9 +29,10 @@ class Style extends Controller
             // Upload image
             if ($request->file('image')) {
                 $manager = new ImageManager(new Driver());
+                $shortTitle = Str::slug(Str::limit($request->title, 30));
 
                 // Generate a unique name using timestamp
-                $name_gen = $request->name . '-' . time() . '.png'; // Always saving as JPEG
+                $name_gen = $shortTitle . '-' . time() . '.png'; // Always saving as JPEG
 
                 $img = $manager->read($request->file('image'));
                 $img = $img->resize(450, 450);
@@ -114,8 +116,9 @@ class Style extends Controller
                 $imagePath = $style->image; // default to existing image
                 if ($request->hasFile('image')) {
                     $manager = new ImageManager(new Driver());
+                    $shortTitle = Str::slug(Str::limit($request->title, 30));
 
-                    $name_gen = str_replace(' ', '-', $request->name) . '-' . time() . '.png';
+                    $name_gen = str_replace(' ', '-', $shortTitle) . '-' . time() . '.png';
 
                     $img = $manager->read($request->file('image'))->resize(450, 450);
                     $savePath = public_path('assets/styles');
