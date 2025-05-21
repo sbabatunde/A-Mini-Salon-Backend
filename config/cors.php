@@ -20,7 +20,7 @@ return [
 
   'paths' => ['api/*'],  // Specify the paths to which CORS should apply  
   'allowed_methods' => ['*'],  // Allow any HTTP methods (GET, POST, etc.)  
-  'allowed_origins' => ['http://localhost:3000','https://precioushairmpire-git-main-salawu-babatundes-projects.vercel.app/'], // Allow requests from this origin  
+  'allowed_origins' => ['http://localhost:3000', 'https://precioushairmpire-git-main-salawu-babatundes-projects.vercel.app'], // Allow requests from this origin  
   'allowed_headers' => ['Origin,Content-Type, X-Auth-Token,Authorization,X-Requested-With,Content-Range,Content-Disposition, Content-Description, x-csrf-token'],  // Allow any headers  
   'exposed_headers' => [],
   'max_age' => 17280000,
